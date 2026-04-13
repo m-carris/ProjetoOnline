@@ -1,0 +1,13 @@
+{
+  "name": "notificacoes-backend",
+  "version": "1.0.0",
+  "description": "Backend do Sistema de Notificações do Coordenador — API REST + WebSockets com NestJS",
+  "scripts": {
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "build": "nest build",
+    "test": "jest"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

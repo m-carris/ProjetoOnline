@@ -1,0 +1,47 @@
+<!-- ==========================================================
+  POPUP.HTML — Interface da Extensão (Popup)
+  ==========================================================
+  O QUE FAZER AQUI:
+  Esta é a janela que aparece quando o operador clica no ícone
+  da extensão no browser. É a interface principal para operadores.
+
+  ELEMENTOS A CRIAR:
+
+  1. ESTADO "NÃO LOGADO":
+     - Formulário de login (username + password)
+     - Botão "Entrar"
+     - Mensagem de erro se credenciais inválidas
+
+  2. ESTADO "LOGADO":
+     - Cabeçalho: "Olá, [nome]" + botão "Sair"
+     - Indicador de conexão (🟢 Conectado / 🔴 Desconectado)
+     - Lista das últimas mensagens recebidas (5-10)
+     - Cada mensagem mostra:
+       * Hora de receção
+       * Badge de prioridade
+       * Conteúdo da mensagem
+     - Mensagens de prioridade alta com destaque visual
+
+  DIMENSÕES RECOMENDADAS:
+  - Largura: 350-400px
+  - Altura: 500-600px
+
+  NOTA: O popup fecha quando se clica fora. Os dados devem
+  ser guardados no chrome.storage para persistir.
+  ========================================================== -->
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notificações</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div id="app">
+    <!-- O conteúdo será gerido pelo popup.ts/popup.js -->
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+/* ============================================================
+   POPUP.CSS — Estilos do Popup da Extensão
+   ============================================================
+   O QUE FAZER AQUI:
+   Estilizar a interface do popup para ser limpa e funcional.
+
+   SUGESTÕES:
+   1. Corpo do popup (largura fixa, padding)
+   2. Estilos do login (centralizado, limpo)
+   3. Lista de mensagens (scroll, cards)
+   4. Cards com destaque para prioridade alta
+   5. Badge de prioridade colorido
+   6. Indicador de conexão WebSocket
+   7. Botões e inputs estilizados
+
+   EXEMPLO:
+     body {
+       width: 380px;
+       min-height: 400px;
+       font-family: 'Segoe UI', sans-serif;
+       margin: 0;
+       padding: 16px;
+       background: #f8f9fa;
+     }
+
+     .message-card {
+       background: white;
+       border-radius: 8px;
+       padding: 12px;
+       margin-bottom: 8px;
+       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+     }
+
+     .message-card.alta {
+       border-left: 4px solid #dc3545;
+       background: #fff5f5;
+     }
+
+     .connection-status {
+       display: flex;
+       align-items: center;
+       gap: 6px;
+       font-size: 0.8em;
+       color: #666;
+     }
+
+     .connection-status.connected::before {
+       content: '';
+       width: 8px;
+       height: 8px;
+       border-radius: 50%;
+       background: #28a745;
+     }
+   ============================================================ */
