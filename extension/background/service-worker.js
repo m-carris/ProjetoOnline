@@ -21,8 +21,11 @@
 // PASSO 1: Constantes
 // ============================================================
 
-// Endereço do servidor backend
-const ENDERECO_SERVIDOR = 'http://localhost:3000';
+// Endereço do servidor backend (URL do Vercel)
+// IMPORTANTE: Depois de fazer deploy, muda este endereço
+// para o URL real do teu projeto no Vercel.
+// Ex: 'https://projeto-online.vercel.app'
+const ENDERECO_SERVIDOR = 'https://projeto-online.vercel.app';
 
 // Nome do alarme que vamos criar
 // O alarme é como um "despertador" que toca a cada minuto
@@ -119,7 +122,7 @@ function verificarNovasMensagens() {
         }
 
         // Fazer o pedido ao servidor
-        fetch(ENDERECO_SERVIDOR + '/messages/recentes?limite=15', {
+        fetch(ENDERECO_SERVIDOR + '/api/messages/recentes?limite=15', {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + token

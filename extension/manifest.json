@@ -24,7 +24,7 @@
   ],
 
   "host_permissions": [
-    "http://localhost:3000/*"
+    "https://projeto-online.vercel.app/*"
   ],
 
   "icons": {

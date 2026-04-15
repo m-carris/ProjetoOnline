@@ -22,8 +22,9 @@
 // importante durante toda a utilização do backoffice.
 
 // O endereço do nosso servidor backend
-// É para cá que enviamos todos os pedidos (requests)
-const ENDERECO_SERVIDOR = 'http://localhost:3000';
+// String vazia porque a API está no mesmo domínio (Vercel)
+// Em desenvolvimento local, muda para 'http://localhost:3000'
+const ENDERECO_SERVIDOR = '';
 
 // O token JWT do utilizador (recebido após o login)
 // É como um "bilhete" que prova que o utilizador está autenticado
@@ -34,9 +35,10 @@ let tokenDoUtilizador = null;
 // Também começa vazio
 let utilizadorLogado = null;
 
-// A conexão Socket.io (para receber mensagens em tempo real)
-// Começa como null porque só conectamos após o login
-let socketConexao = null;
+// A conexão Supabase Realtime (para receber mensagens em tempo real)
+// Substitui o Socket.io — usa o Supabase para escutar mudanças na BD
+let supabaseClient = null;
+let supabaseChannel = null;
 
 // A prioridade selecionada no formulário de envio
 // Começa como 'normal' (valor padrão)
@@ -111,7 +113,7 @@ function fazerLogin() {
 
     // Enviar o pedido de login ao servidor
     // fetch é a forma de fazer pedidos HTTP em JavaScript
-    fetch(ENDERECO_SERVIDOR + '/auth/login', {
+    fetch(ENDERECO_SERVIDOR + '/api/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -176,8 +178,8 @@ function mostrarPainelPrincipal() {
     // Mostrar o nome do utilizador na barra de navegação
     document.getElementById('nav-nome-utilizador').textContent = utilizadorLogado.nome;
 
-    // Conectar ao Socket.io (para receber mensagens em tempo real)
-    conectarSocketIo();
+    // Conectar ao Supabase Realtime (para receber mensagens em tempo real)
+    conectarSupabaseRealtime();
 
     // Carregar os dados iniciais
     carregarTemplates();
@@ -203,10 +205,10 @@ function fazerLogout() {
     localStorage.removeItem('token');
     localStorage.removeItem('utilizador');
 
-    // Desconectar o Socket.io
-    if (socketConexao) {
-        socketConexao.disconnect();
-        socketConexao = null;
+    // Desconectar o Supabase Realtime
+    if (supabaseChannel) {
+        supabaseClient.removeChannel(supabaseChannel);
+        supabaseChannel = null;
     }
 
     // Esconder o painel principal e mostrar o login
@@ -215,42 +217,64 @@ function fazerLogout() {
 }
 
 // ============================================================
-// PASSO 6: Conexão Socket.io (Tempo Real)
+// PASSO 6: Conexão Supabase Realtime (Tempo Real)
 // ============================================================
-// O Socket.io permite que o servidor "empurre" mensagens para
-// nós sem precisarmos de pedir. É como um walkie-talkie.
-// Quando o coordenador envia uma mensagem, ela aparece
-// automaticamente na lista de últimas mensagens.
+// O Supabase Realtime substitui o Socket.io.
+// Em vez de manter uma conexão WebSocket com o nosso servidor,
+// escutamos diretamente as mudanças na base de dados Supabase.
+// Quando uma nova mensagem é inserida na tabela 'mensagens',
+// recebemos uma notificação instantânea.
 
-function conectarSocketIo() {
-    // Conectar ao servidor Socket.io
-    // A variável 'io' é fornecida pelo script socket.io.js
-    // que carregámos no HTML
-    socketConexao = io(ENDERECO_SERVIDOR);
+function conectarSupabaseRealtime() {
+    // Primeiro, buscar a configuração do Supabase ao servidor
+    fetch(ENDERECO_SERVIDOR + '/api/config')
+    .then(function(resposta) {
+        return resposta.json();
+    })
+    .then(function(config) {
+        // Criar o cliente Supabase com a anon key (chave pública)
+        supabaseClient = supabase.createClient(config.supabaseUrl, config.supabaseAnonKey);
 
-    // Evento: quando a conexão é estabelecida com sucesso
-    socketConexao.on('connect', function() {
-        // Atualizar o indicador de conexão para "Conectado" (verde)
-        let indicador = document.getElementById('indicador-conexao');
-        indicador.textContent = '🟢 Conectado';
-        indicador.className = 'indicador-conectado';
-    });
+        // Criar um canal para escutar mudanças na tabela 'mensagens'
+        supabaseChannel = supabaseClient
+            .channel('mensagens-realtime')
+            .on('postgres_changes',
+                { event: 'INSERT', schema: 'public', table: 'mensagens' },
+                function(payload) {
+                    // payload.new contém a nova mensagem (com nomes snake_case)
+                    // Converter para camelCase para compatibilidade com o frontend
+                    let mensagem = {
+                        id: payload.new.id,
+                        conteudo: payload.new.conteudo,
+                        prioridade: payload.new.prioridade,
+                        tipo: payload.new.tipo,
+                        destinatario: payload.new.destinatario,
+                        remetenteId: payload.new.remetente_id,
+                        remetenteNome: payload.new.remetente_nome,
+                        criadaEm: payload.new.criada_em
+                    };
 
-    // Evento: quando a conexão é perdida
-    socketConexao.on('disconnect', function() {
-        // Atualizar o indicador para "Desconectado" (vermelho)
+                    // Adicionar a mensagem à lista de últimas mensagens
+                    adicionarMensagemAoTopo(mensagem);
+                }
+            )
+            .subscribe(function(status) {
+                // Atualizar o indicador de conexão
+                let indicador = document.getElementById('indicador-conexao');
+                if (status === 'SUBSCRIBED') {
+                    indicador.textContent = '🟢 Conectado';
+                    indicador.className = 'indicador-conectado';
+                } else {
+                    indicador.textContent = '🔴 Desconectado';
+                    indicador.className = 'indicador-desconectado';
+                }
+            });
+    })
+    .catch(function(erro) {
+        // Se não conseguiu conectar, mostrar como desconectado
         let indicador = document.getElementById('indicador-conexao');
         indicador.textContent = '🔴 Desconectado';
         indicador.className = 'indicador-desconectado';
-    });
-
-    // Evento: quando recebemos uma nova mensagem
-    // Este é o evento mais importante! Quando o coordenador (ou outro)
-    // envia uma mensagem, o servidor emite 'nova-mensagem' e nós
-    // recebemos aqui instantaneamente.
-    socketConexao.on('nova-mensagem', function(mensagem) {
-        // Adicionar a mensagem à lista de últimas mensagens
-        adicionarMensagemAoTopo(mensagem);
     });
 }
 
@@ -308,7 +332,7 @@ function mudarPagina(nomeDaPagina) {
 
 function carregarTemplates() {
     // Fazer um pedido GET ao servidor para buscar os templates
-    fetch(ENDERECO_SERVIDOR + '/templates', {
+    fetch(ENDERECO_SERVIDOR + '/api/templates', {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + tokenDoUtilizador
@@ -459,7 +483,7 @@ function enviarMensagem() {
     });
 
     // Enviar o pedido POST ao servidor
-    fetch(ENDERECO_SERVIDOR + '/messages', {
+    fetch(ENDERECO_SERVIDOR + '/api/messages', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -524,7 +548,7 @@ function mostrarFeedbackEnvio(texto, sucesso) {
 
 function carregarUltimasMensagens() {
     // Fazer pedido GET para buscar as últimas 10 mensagens
-    fetch(ENDERECO_SERVIDOR + '/messages/recentes?limite=10', {
+    fetch(ENDERECO_SERVIDOR + '/api/messages/recentes?limite=10', {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + tokenDoUtilizador
@@ -738,7 +762,7 @@ function mostrarListaDeMensagens(mensagens, containerId) {
 // Carregar o histórico de mensagens (sem filtros inicialmente)
 function carregarHistorico() {
     // Construir a URL com os filtros (se existirem)
-    let url = ENDERECO_SERVIDOR + '/messages';
+    let url = ENDERECO_SERVIDOR + '/api/messages';
     let filtros = [];
 
     let pesquisa = document.getElementById('filtro-pesquisa').value;
@@ -805,7 +829,7 @@ function limparFiltros() {
 
 // Carregar a lista de utilizadores do servidor
 function carregarUtilizadores() {
-    fetch(ENDERECO_SERVIDOR + '/users', {
+    fetch(ENDERECO_SERVIDOR + '/api/users', {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + tokenDoUtilizador
@@ -882,7 +906,7 @@ function criarUtilizador() {
         role: role
     });
 
-    fetch(ENDERECO_SERVIDOR + '/users', {
+    fetch(ENDERECO_SERVIDOR + '/api/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

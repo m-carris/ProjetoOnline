@@ -15,8 +15,11 @@
 // PASSO 1: Constantes e Variáveis
 // ============================================================
 
-// Endereço do servidor backend
-const ENDERECO_SERVIDOR = 'http://localhost:3000';
+// Endereço do servidor backend (URL do Vercel)
+// IMPORTANTE: Depois de fazer deploy, muda este endereço
+// para o URL real do teu projeto no Vercel.
+// Ex: 'https://projeto-online.vercel.app'
+const ENDERECO_SERVIDOR = 'https://projeto-online.vercel.app';
 
 // ============================================================
 // PASSO 2: Quando o popup abre, verificar se está logado
@@ -78,7 +81,7 @@ function fazerLogin() {
     });
 
     // Enviar o pedido de login ao servidor
-    fetch(ENDERECO_SERVIDOR + '/auth/login', {
+    fetch(ENDERECO_SERVIDOR + '/api/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -177,7 +180,7 @@ function carregarMensagens() {
         }
 
         // Fazer o pedido ao servidor
-        fetch(ENDERECO_SERVIDOR + '/messages/recentes?limite=15', {
+        fetch(ENDERECO_SERVIDOR + '/api/messages/recentes?limite=15', {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + token
