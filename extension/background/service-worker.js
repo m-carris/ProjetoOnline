@@ -24,8 +24,7 @@
 // Endereço do servidor backend (URL do Vercel)
 // IMPORTANTE: Depois de fazer deploy, muda este endereço
 // para o URL real do teu projeto no Vercel.
-// Ex: 'https://projeto-online.vercel.app'
-const ENDERECO_SERVIDOR = 'https://projeto-online.vercel.app';
+const ENDERECO_SERVIDOR = 'https://carris-extensao.vercel.app';
 
 // Nome do alarme que vamos criar
 // O alarme é como um "despertador" que toca a cada minuto

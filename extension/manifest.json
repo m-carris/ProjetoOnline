@@ -24,7 +24,7 @@
   ],
 
   "host_permissions": [
-    "https://projeto-online.vercel.app/*"
+    "https://carris-extensao.vercel.app/*"
   ],
 
   "icons": {

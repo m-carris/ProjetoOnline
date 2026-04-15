@@ -18,8 +18,7 @@
 // Endereço do servidor backend (URL do Vercel)
 // IMPORTANTE: Depois de fazer deploy, muda este endereço
 // para o URL real do teu projeto no Vercel.
-// Ex: 'https://projeto-online.vercel.app'
-const ENDERECO_SERVIDOR = 'https://projeto-online.vercel.app';
+const ENDERECO_SERVIDOR = 'https://carris-extensao.vercel.app';
 
 // ============================================================
 // PASSO 2: Quando o popup abre, verificar se está logado
