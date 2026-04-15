@@ -508,6 +508,10 @@ function enviarMensagem() {
         // Sucesso! Mostrar feedback positivo
         mostrarFeedbackEnvio('✅ Mensagem enviada com sucesso!', true);
 
+        // Adicionar a mensagem à lista de últimas mensagens imediatamente
+        // (sem esperar pelo Supabase Realtime, para feedback instantâneo)
+        adicionarMensagemAoTopo(dados);
+
         // Limpar o formulário
         document.getElementById('mensagem-conteudo').value = '';
         selecionarPrioridade('normal');

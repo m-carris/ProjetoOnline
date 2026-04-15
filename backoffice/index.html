@@ -20,8 +20,11 @@
     <!-- Tornar a página responsiva (adaptar-se ao ecrã) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Favicon Carris -->
+    <link rel="icon" href="favicon_carris.png">
+
     <!-- Título que aparece no separador do browser -->
-    <title>Carris — Backoffice de Notificações</title>
+    <title>CARRIS — Backoffice de Notificações</title>
 
     <!-- Ligar o nosso ficheiro de estilos CSS -->
     <link rel="stylesheet" href="estilo.css">
@@ -38,6 +41,7 @@
             <!-- Logo / Título -->
             <div id="login-cabecalho">
                 <div id="login-logo">🚌</div>
+                <img src="logosvg.svg" alt="Carris" class="login-logo-img" style="background-color: #003f8f; padding: 0.8rem 1.6rem;">
                 <h1>Carris</h1>
                 <p>Sistema de Notificações</p>
                 <p id="login-subtitulo">Backoffice do Coordenador</p>
@@ -84,18 +88,19 @@
         <div id="barra-navegacao">
             <div id="nav-esquerda">
                 <span id="nav-logo">🚌</span>
-                <span id="nav-titulo">Carris — Notificações</span>
+                <img src="logosvg.svg" alt="Carris" class="nav-logo-img">
+                <span id="nav-titulo">Notificações</span>
             </div>
             <div id="nav-centro">
                 <!-- Botões de navegação entre páginas -->
                 <button class="nav-botao nav-botao-ativo" id="nav-btn-enviar" onclick="mudarPagina('enviar')">
-                    📢 Enviar Mensagem
+                    Enviar Mensagem
                 </button>
                 <button class="nav-botao" id="nav-btn-historico" onclick="mudarPagina('historico')">
-                    📜 Histórico
+                    Histórico
                 </button>
                 <button class="nav-botao" id="nav-btn-utilizadores" onclick="mudarPagina('utilizadores')">
-                    👥 Utilizadores
+                    Utilizadores
                 </button>
             </div>
             <div id="nav-direita">

@@ -1,15 +1,36 @@
 /* ============================================================
-   POPUP.CSS — Estilos da Extensão (Popup do Operador)
+   POPUP.CSS — Extensão Carris (Design oficial carris.pt)
    ============================================================
-   Paleta de cores Carris:
-   - Amarelo: #FFD200
-   - Preto: #1D1D1B
-   - Branco: #FFFFFF
-   - Cinzentos: #F5F5F5, #E0E0E0, #999999, #333333
-   - Vermelho (alta): #DC3545
+   Paleta oficial:
+   - Azul:    #003f8f
+   - Amarelo: #ffd400
+   - Preto:   #1d1d1b
+   - Texto:   #585862
+   - Borda:   #cccccc
+   - Fundo:   #f5f5f5
+   - Erro:    #ed1c24
+   - Sucesso: #72bf44
    ============================================================ */
 
-/* ---- Reset e corpo ---- */
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -19,33 +40,40 @@
 body {
     width: 380px;
     min-height: 500px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #F5F5F5;
-    color: #1D1D1B;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    background-color: #f5f5f5;
+    color: #1d1d1b;
 }
 
-/* ---- Cabeçalho ---- */
-/* Barra preta no topo com o logo e nome */
+/* ---- Cabeçalho (barra azul Carris) ---- */
 #cabecalho {
-    background-color: #1D1D1B;
+    background-color: #003f8f;
     padding: 12px 16px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 #cabecalho-logo {
-    font-size: 22px;
+    display: none; /* Escondemos o emoji */
+}
+
+.cabecalho-logo-img {
+    height: 16px;
 }
 
 #cabecalho-titulo {
-    color: #FFD200;
-    font-size: 15px;
-    font-weight: bold;
+    color: #ffd400;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 /* ============================================================
-   SECÇÃO DE LOGIN
+   LOGIN
    ============================================================ */
 
 #secao-login {
@@ -54,88 +82,89 @@ body {
 
 #login-instrucao {
     font-size: 13px;
-    color: #666666;
+    color: #585862;
     margin-bottom: 16px;
+    font-weight: 300;
 }
 
-/* Cada campo (label + input) */
 .campo {
     margin-bottom: 12px;
 }
 
 .campo label {
     display: block;
-    font-size: 12px;
-    font-weight: bold;
-    color: #333333;
+    font-size: 11px;
+    font-weight: 500;
+    color: #003f8f;
     margin-bottom: 4px;
+    letter-spacing: 0.3px;
 }
 
 .campo input {
     width: 100%;
     padding: 10px 12px;
-    border: 2px solid #E0E0E0;
-    border-radius: 6px;
+    border: 1px solid #cccccc;
+    font-family: 'Roboto', sans-serif;
     font-size: 13px;
+    font-weight: 300;
     outline: none;
+    color: #1d1d1b;
 }
 
 .campo input:focus {
-    border-color: #FFD200;
+    border-color: #003f8f;
 }
 
-/* Mensagem de erro no login */
 #login-erro {
-    color: #DC3545;
+    color: #ed1c24;
     font-size: 12px;
+    font-weight: 300;
     margin-bottom: 10px;
     min-height: 16px;
 }
 
-/* Botão de login */
 #botao-login {
     width: 100%;
-    padding: 12px;
-    background-color: #FFD200;
-    color: #1D1D1B;
-    border: none;
-    border-radius: 6px;
+    padding: 11px;
+    background-color: #003f8f;
+    color: #ffffff;
+    border: 1px solid #003f8f;
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 500;
     cursor: pointer;
+    transition: all 0.2s;
 }
 
 #botao-login:hover {
-    background-color: #E6BD00;
+    background-color: #ffffff;
+    color: #003f8f;
 }
 
-/* Dica de conta de teste */
 #login-dica {
     margin-top: 16px;
     padding: 10px;
-    background-color: #FFFFFF;
-    border-radius: 6px;
+    background-color: rgba(0, 63, 143, 0.05);
+    border-left: 3px solid #003f8f;
     font-size: 11px;
-    color: #999999;
-    text-align: center;
+    color: #585862;
 }
 
 /* ============================================================
-   SECÇÃO PRINCIPAL (após login)
+   SECÇÃO PRINCIPAL
    ============================================================ */
 
 #secao-principal {
     padding: 0 0 12px 0;
 }
 
-/* ---- Barra do utilizador ---- */
 #barra-utilizador {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 16px;
-    background-color: #FFFFFF;
-    border-bottom: 1px solid #E0E0E0;
+    background-color: #ffffff;
+    border-bottom: 1px solid #cccccc;
 }
 
 #info-utilizador {
@@ -146,66 +175,67 @@ body {
 
 #nome-utilizador {
     font-size: 14px;
-    font-weight: bold;
-    color: #1D1D1B;
+    font-weight: 500;
+    color: #1d1d1b;
 }
 
-/* Estado de conexão */
 #estado-conexao {
     font-size: 11px;
+    font-weight: 300;
 }
 
 .estado-conectado {
-    color: #28A745;
+    color: #72bf44;
 }
 
 .estado-desconectado {
-    color: #DC3545;
+    color: #ed1c24;
 }
 
-/* Botão de sair */
 #botao-sair {
-    padding: 6px 14px;
+    padding: 5px 14px;
     background-color: transparent;
-    border: 1px solid #E0E0E0;
-    border-radius: 6px;
-    color: #666666;
+    border: 1px solid #cccccc;
+    color: #585862;
+    font-family: 'Roboto', sans-serif;
     font-size: 12px;
+    font-weight: 300;
     cursor: pointer;
+    transition: all 0.2s;
 }
 
 #botao-sair:hover {
-    background-color: #DC3545;
-    color: #FFFFFF;
-    border-color: #DC3545;
+    background-color: #ed1c24;
+    color: #ffffff;
+    border-color: #ed1c24;
 }
 
-/* ---- Título das mensagens ---- */
+/* ---- Mensagens ---- */
 #titulo-mensagens {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 12px 16px 8px 16px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #333333;
+    font-size: 13px;
+    font-weight: 500;
+    color: #003f8f;
 }
 
-/* Botão de atualizar */
 #botao-atualizar {
     background: none;
-    border: none;
-    font-size: 16px;
+    border: 1px solid #cccccc;
+    font-size: 14px;
     cursor: pointer;
-    padding: 4px;
-    border-radius: 4px;
+    padding: 3px 8px;
+    color: #585862;
+    transition: all 0.2s;
 }
 
 #botao-atualizar:hover {
-    background-color: #E0E0E0;
+    border-color: #003f8f;
+    color: #003f8f;
 }
 
-/* ---- Lista de mensagens ---- */
 #lista-mensagens {
     padding: 0 12px;
     max-height: 380px;
@@ -215,30 +245,32 @@ body {
     gap: 8px;
 }
 
-/* Texto quando não há mensagens */
 .texto-vazio {
     text-align: center;
-    color: #999999;
+    color: #8f8f8c;
     font-size: 13px;
+    font-weight: 300;
     padding: 30px 0;
 }
 
-/* ---- Card de mensagem ---- */
+/* ---- Card mensagem ---- */
 .msg-card {
-    background-color: #FFFFFF;
-    border: 1px solid #E0E0E0;
-    border-radius: 8px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
     padding: 10px 12px;
-    border-left: 3px solid #E0E0E0;
+    border-left: 3px solid #cccccc;
+    transition: box-shadow 0.2s;
 }
 
-/* Card de mensagem com prioridade ALTA */
+.msg-card:hover {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
 .msg-card-alta {
-    border-left-color: #DC3545;
-    background-color: #FFF8F8;
+    border-left-color: #ed1c24;
+    background-color: rgba(237, 28, 36, 0.03);
 }
 
-/* Cabeçalho do card */
 .msg-cabecalho {
     display: flex;
     justify-content: space-between;
@@ -246,52 +278,50 @@ body {
     margin-bottom: 6px;
 }
 
-/* Data da mensagem */
 .msg-data {
     font-size: 11px;
-    color: #999999;
+    font-weight: 300;
+    color: #8f8f8c;
 }
 
-/* Badge de prioridade */
 .msg-badge {
     padding: 2px 6px;
-    border-radius: 10px;
-    font-size: 10px;
-    font-weight: bold;
+    font-size: 9px;
+    font-weight: 500;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .msg-badge-normal {
-    background-color: #E8F5E9;
-    color: #2E7D32;
+    background-color: rgba(114, 191, 68, 0.15);
+    color: #2e7d32;
 }
 
 .msg-badge-alta {
-    background-color: #FFEBEE;
-    color: #C62828;
+    background-color: rgba(237, 28, 36, 0.15);
+    color: #c62828;
 }
 
-/* Conteúdo da mensagem */
 .msg-conteudo {
     font-size: 13px;
-    line-height: 1.4;
-    color: #1D1D1B;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #1d1d1b;
     margin-bottom: 6px;
 }
 
-/* Rodapé do card */
 .msg-rodape {
     display: flex;
     justify-content: space-between;
     font-size: 10px;
-    color: #999999;
+    font-weight: 300;
+    color: #8f8f8c;
 }
 
-/* Badge de tipo */
 .msg-tipo {
     padding: 1px 6px;
-    background-color: #F5F5F5;
-    border-radius: 4px;
+    background-color: rgba(0, 63, 143, 0.08);
+    color: #003f8f;
     font-size: 10px;
-    color: #666666;
+    font-weight: 400;
 }
