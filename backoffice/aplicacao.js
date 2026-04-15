@@ -151,7 +151,7 @@ function fazerLogin() {
         // Mostrar o painel principal
         mostrarPainelPrincipal();
     })
-    .then(undefined, function(erro) {
+    .catch(function(erro) {
         // Se houve um erro de rede (servidor não está a correr, etc.)
         botaoLogin.textContent = 'Entrar';
         botaoLogin.disabled = false;
@@ -371,7 +371,7 @@ function carregarTemplates() {
             container.appendChild(botao);
         }
     })
-    .then(undefined, function(erro) {
+    .catch(function(erro) {
         // Se houve erro, mostrar mensagem
         let container = document.getElementById('templates-botoes');
         container.innerHTML = '<p class="texto-ajuda">Erro ao carregar templates.</p>';
@@ -489,7 +489,7 @@ function enviarMensagem() {
         selecionarPrioridade('normal');
         document.getElementById('mensagem-tipo').value = 'geral';
     })
-    .then(undefined, function(erro) {
+    .catch(function(erro) {
         // Erro de rede
         botaoEnviar.textContent = '📤 Enviar Mensagem';
         botaoEnviar.disabled = false;
@@ -537,7 +537,7 @@ function carregarUltimasMensagens() {
         // Mostrar as mensagens na lista
         mostrarListaDeMensagens(mensagens, 'ultimas-mensagens-lista');
     })
-    .then(undefined, function(erro) {
+    .catch(function(erro) {
         let container = document.getElementById('ultimas-mensagens-lista');
         container.innerHTML = '<p class="texto-ajuda">Erro ao carregar mensagens.</p>';
     });
@@ -780,7 +780,7 @@ function carregarHistorico() {
     .then(function(mensagens) {
         mostrarListaDeMensagens(mensagens, 'historico-lista');
     })
-    .then(undefined, function(erro) {
+    .catch(function(erro) {
         let container = document.getElementById('historico-lista');
         container.innerHTML = '<p class="texto-ajuda">Erro ao carregar histórico.</p>';
     });
@@ -852,7 +852,7 @@ function carregarUtilizadores() {
             container.appendChild(card);
         }
     })
-    .then(undefined, function(erro) {
+    .catch(function(erro) {
         let container = document.getElementById('utilizadores-lista');
         container.innerHTML = '<p class="texto-ajuda">Erro ao carregar utilizadores.</p>';
     });
@@ -911,7 +911,7 @@ function criarUtilizador() {
         // Recarregar a lista de utilizadores
         carregarUtilizadores();
     })
-    .then(undefined, function(erro) {
+    .catch(function(erro) {
         divFeedback.textContent = '❌ Erro de ligação ao servidor.';
         divFeedback.style.color = '#DC3545';
     });

@@ -119,7 +119,7 @@ function fazerLogin() {
         // Carregar as mensagens
         carregarMensagens();
     })
-    .then(undefined, function(erro) {
+    .catch(function(erro) {
         // Erro de rede
         botao.textContent = 'Entrar';
         botao.disabled = false;
@@ -194,7 +194,7 @@ function carregarMensagens() {
             // Mostrar as mensagens no popup
             mostrarMensagens(mensagens);
         })
-        .then(undefined, function(erro) {
+        .catch(function(erro) {
             let container = document.getElementById('lista-mensagens');
             container.innerHTML = '<p class="texto-vazio">Erro ao carregar mensagens.</p>';
         });

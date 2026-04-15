@@ -170,7 +170,7 @@ function verificarNovasMensagens() {
 
                 // Avisar o popup (se estiver aberto) que há novas mensagens
                 chrome.runtime.sendMessage({ tipo: 'NOVA_MENSAGEM' })
-                .then(undefined, function() {
+                .catch(function() {
                     // Se o popup não está aberto, o sendMessage falha
                     // Isso é normal e esperado — ignoramos o erro
                 });
@@ -178,14 +178,14 @@ function verificarNovasMensagens() {
 
             // Atualizar o estado de conexão
             chrome.runtime.sendMessage({ tipo: 'ESTADO_ATUALIZADO', ativo: true })
-            .then(undefined, function() {
+            .catch(function() {
                 // Ignorar se o popup não está aberto
             });
         })
-        .then(undefined, function(erro) {
+        .catch(function(erro) {
             // Erro de rede — o servidor pode não estar a correr
             chrome.runtime.sendMessage({ tipo: 'ESTADO_ATUALIZADO', ativo: false })
-            .then(undefined, function() {
+            .catch(function() {
                 // Ignorar se o popup não está aberto
             });
         });

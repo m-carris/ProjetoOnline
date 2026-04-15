@@ -154,10 +154,17 @@ function verificarToken(req, res, next) {
     // .split(' ') divide a string pelo espaço
     let partes = cabecalho.split(' ');
 
+    // Verificar se o cabeçalho tem pelo menos 2 partes (Bearer + token)
+    // Se não tem, o formato é inválido
+    if (partes.length < 2) {
+        res.status(401).json({ erro: 'Formato do token inválido.' });
+        return;
+    }
+
     // A segunda parte (índice 1) é o token propriamente dito
     let token = partes[1];
 
-    // Se não existe token depois do "Bearer", o formato é inválido
+    // Se o token está vazio, o formato é inválido
     if (!token) {
         res.status(401).json({ erro: 'Formato do token inválido.' });
         return;
