@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="Group" width="17.769" height="16.5" viewBox="0 0 17.769 16.5">
+    <g id="Rectangle" fill="#D8D8D8" stroke="#003F8F" stroke-miterlimit="10">
+        <rect width="17.769" height="1.269" stroke="none" rx=".5"/>
+        <path d="M.5.5h16.769v.269H.5z" fill="none"/>
+    </g>
+    <g id="Rectangle_Copy" fill="#D8D8D8" stroke="#003F8F" stroke-miterlimit="10" data-name="Rectangle Copy" transform="translate(0 7.615)">
+        <rect width="10.154" height="1.269" stroke="none" rx=".5"/>
+        <path d="M.5.5h9.154v.269H.5z" fill="none"/>
+    </g>
+    <g id="Rectangle_Copy_2" fill="#D8D8D8" stroke="#003F8F" stroke-miterlimit="10" data-name="Rectangle Copy 2" transform="translate(0 15.23)">
+        <rect width="15.23" height="1.269" stroke="none" rx=".5"/>
+        <path d="M.5.5h14.23v.269H.5z" fill="none"/>
+    </g>
+</svg>

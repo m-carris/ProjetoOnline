@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="25.199" viewBox="0 0 20 25.199">
+    <g id="Close" transform="translate(0 .5)">
+        <g id="Iconografia_Mupi" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" data-name="Iconografia / Mupi" transform="translate(2.782)">
+            <rect id="Rectangle_40" width="12.16" height="17.369" data-name="Rectangle 40" rx="3.028" transform="translate(1.334)"/>
+            <path id="Path_345" d="M808.916 774.1l-2.542 1.595a1.022 1.022 0 0 0-.463.869v.039a.968.968 0 0 0 .928 1h12.973a.968.968 0 0 0 .928-1v-.039a1.022 1.022 0 0 0-.463-.869l-2.542-1.595a.873.873 0 0 0-.465-.135h-7.888a.873.873 0 0 0-.466.135z" data-name="Path 345" transform="translate(-805.911 -753.413)"/>
+            <path id="Line_41" d="M0 0v3.187" data-name="Line 41" transform="translate(4.299 17.369)"/>
+            <path id="Line_42" d="M0 0v3.187" data-name="Line 42" transform="translate(10.53 17.369)"/>
+            <path id="Path_346" d="M825.406 701.74l3.068-6.41a.608.608 0 0 1 1.082 0l3.068 6.41a.564.564 0 0 1-.541.793h-6.135a.564.564 0 0 1-.542-.793z" data-name="Path 346" transform="translate(-821.6 -690.081)"/>
+            <path id="Line_43" d="M0 0v1.915" data-name="Line 43" transform="translate(7.414 7.598)"/>
+            <path id="Path_347" d="M843.941 724.211a.121.121 0 1 0-.12.114.117.117 0 0 0 .12-.114z" data-name="Path 347" transform="translate(-836.406 -713.417)"/>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,11 @@
+<svg width="11" height="5.999999999999999" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path stroke="null" fill="#000000" transform="rotate(-90 5.509891510009766,3.002472877502441)" d="m8.501649,-2.192822l-5.376188,5.195295l5.35724,5.195295l-0.299176,0.292341l-5.665391,-5.487636l5.670378,-5.487636l0.313137,0.292341z" id="Icon_Drop"/>
+ </g>
+</svg>

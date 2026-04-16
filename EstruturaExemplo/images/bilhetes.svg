@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+  <g>
+    <path d="M18.628,5.522a1.117,1.117,0,0,0-1.117-1.117H8.582A1.116,1.116,0,0,0,7.466,5.522v2.79a1.675,1.675,0,0,1,0,3.349v9.488a1.115,1.115,0,0,0,1.116,1.116" fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round"/>
+    <g>
+      <path d="M22.534,14.99a1.675,1.675,0,0,1,0-3.349V8.851a1.115,1.115,0,0,0-1.116-1.116h-8.93a1.116,1.116,0,0,0-1.116,1.116v2.79a1.675,1.675,0,1,1,0,3.349v9.488A1.117,1.117,0,0,0,12.488,25.6h8.93a1.116,1.116,0,0,0,1.116-1.117Z" fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="15.279" y1="13.316" x2="15.837" y2="13.316" fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="18.069" y1="13.316" x2="18.628" y2="13.316" fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <polyline points="13.605 18.897 13.605 23.362 18.628 23.362" fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="15.26" y1="9.986" x2="18.628" y2="9.986" fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
